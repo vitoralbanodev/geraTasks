@@ -1,19 +1,29 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GeraTasks</title>
-</head>
-<body>
-    <h1>GeraTasks</h1>
-    <input type="text" name="taskTitle" placeholder="Titulo" id="taskTitle">
-    <select id="prioritySelect">
-        <option value="low">Baixa</option>
-        <option value="medium">Média</option>
-        <option value="high">Alta</option>
-    </select>
-    <input type="submit" onclick=insertTask()>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>GeraTasks</title>
+        <link rel="stylesheet" href="../css/style.css">
+    </head>
+    <body>
+        <div class="container">
+            <h1>GeraTasks</h1>
+            <div class="input-group">
+                <input type="text" name="taskTitle" placeholder="O que precisa ser feito?" id="taskTitle">
+                <select id="prioritySelect">
+                    <option value="Baixa">Prioridade Baixa</option>
+                    <option value="Média">Prioridade Média</option>
+                    <option value="Alta">Prioridade Alta</option>
+                </select>
+                <button class="btn-submit" onclick="insertTask()">Adicionar Tarefa</button>
+            </div>
+        </div>
+        
+        <div>
+            <ul id="taskListDisplay"></ul>
+        </div>
+
+        <script src="../javascript/indexAction.js"></script>
+    </body>
 </html>
-<script src="../javascript/indexAction.js"></script>
