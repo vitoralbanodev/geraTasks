@@ -1,9 +1,10 @@
 function insertTask() {
     const inputValue = document.getElementById("taskTitle").value;
+    const inputCleaned = inputValue.replace(/[^a-zA-Z0-9]/g, "");
     const selectValue = document.getElementById("prioritySelect").value;
 
-    if (inputValue) {
-        const taskToInsert = { taskTitle: inputValue, priority: selectValue };
+    if (inputCleaned) {
+        const taskToInsert = { taskTitle: inputCleaned, priority: selectValue };
         let taskList = JSON.parse(localStorage.getItem("taskList")) || [];
 
         taskList.push(taskToInsert);
@@ -13,6 +14,8 @@ function insertTask() {
         document.getElementById("taskTitle").value = "";
         renderTasks();
     } else {
+        document.getElementById("taskTitle").value = "";
+
         alert("Digite o título da tarefa!");
     }
 }
@@ -26,9 +29,12 @@ function renderTasks() {
         const li = document.createElement("li");
         li.className = `prioridade-${task.priority}`;
 
+        const taskTitle = task.taskTitle.replace(/[^a-zA-Z0-9]/g, "");
+        const taskTitleShorted = taskTitle.length > 30 ? taskTitle.substring(0, 30) + "..." : taskTitle;
+
         li.innerHTML = `
             <div class="task-info">
-                <strong>${task.taskTitle}</strong> 
+                <span title=${taskTitle}><strong>${taskTitleShorted}</strong></span>
                 <span>Prioridade ${task.priority}</span>
             </div>
             <button class="remove-btn" onclick="removeTask(${index})" title="Remover Tarefa">
